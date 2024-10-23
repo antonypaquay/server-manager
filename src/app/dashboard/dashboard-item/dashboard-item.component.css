@@ -7,7 +7,7 @@
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
-:host {
+:host header {
   display: flex;
   padding: 0;
   gap: 0.75rem;

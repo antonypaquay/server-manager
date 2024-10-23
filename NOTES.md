@@ -1,3 +1,5 @@
+# Composants et templates - Avancés
+
 ## Écouter des événements sur l'élément host
 
 #### Ancienne méthode
@@ -132,3 +134,24 @@ Dans la hook onCleanup je dois définir ce qui doit se passer avant que le code 
   }
 });
 ```
+
+#### Mettre en place une liaison bidirectionnelle (Two-Way-Biding) personnalisée
+Dans l'exemple si dessous il est important que l'output ait le même nom que l'input + 'Change'
+Exemple: sizeChange
+```
+  @Input({required: true}) size!: {width: string: height: string};
+  @Output({required: true}) sizeChange = new EventEmitter<{width: string: height: string}>();
+```
+***Nouvelle approche pour la liaison bidirectionnelle v17.2=<***
+```
+  size = input.required<{width: string: height: string}>;
+  
+  onReset() {
+    this.size.set({
+      width: '200',
+      height: '100',
+    });
+  }
+```
+
+# Directives
