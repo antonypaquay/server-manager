@@ -19,4 +19,8 @@ export class ControlComponent {
   //  console.log('Clicked!');
   // }
   label = input.required<string>();
+
+  onClick() {
+   console.log('Clicked!');
+  }
 }
