@@ -135,6 +135,13 @@ Dans la hook onCleanup je dois définir ce qui doit se passer avant que le code 
 });
 ```
 
+#### Mettre à jour un signal
+```
+  this.mySignal.update((previousValue) => {
+    console.log(this.previousValue);
+  });
+```
+
 #### Mettre en place une liaison bidirectionnelle (Two-Way-Biding) personnalisée
 Dans l'exemple si dessous il est important que l'output ait le même nom que l'input + 'Change'
 Exemple: sizeChange
