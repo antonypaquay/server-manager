@@ -90,3 +90,45 @@ En utilisant le destroyRef
   }
 ```
 
+### Utilisation du signal viewChild v17.3=<
+
+```
+private form = viewChild<ElementRef<HTMLFormElement>>("form");
+```
+
+#### Lifecycle méthodes disponible seulement à partir de la v16=< et à utiliser dans le constructor
+```
+constructor() {
+    /* Permet de souscrire un abonement au signal qui normalement dans le contructor n'a pas lieu
+      Angular mettra donc en place un abonnement à ce signal et en plus nettoie cette abonnement(destroy)
+      quand le composant est détruit */
+    effect(() => {
+      console.log(this.signalName());
+    });
+    // Est déclenché après que n'importe quel autres composants de l'application ait été rendu
+    afterRender(() => {
+
+    });
+    // Est déclenché uniquement quand le prochain élément de l'application est rendu
+    afterNextRender(() => {
+
+    });
+  }
+```
+
+#### Nettoyer l'abonnement créé avec la fonction effect() avec la fonction de rappel onCleanup
+Dans la hook onCleanup je dois définir ce qui doit se passer avant que le code de l'effet ne s'exécute la prochaine fois
+```
+  constructor() {
+    effect((onCleanup) => {
+      const tasks = getTasks();
+      const timer = setTimeout(() => {
+        console.log(`Current number of tasks: ${tasks().length}`);
+      }, 1000);
+      onCleanup(() => {
+        clearTimeout(timer);
+      });
+    }
+  }
+});
+```
